@@ -52,14 +52,14 @@ You should always pick the right tool for the right job. Unfortunately, there wi
 
 ![science is more art than science](/images/science_art.png)
 
-Aside of technical considerations, other considerations, such as community adoption are also important. It was reported the Facebook chose not to use the Erlag language because of the difficulty to find experienced Erlag developers.
+Aside of technical considerations, other considerations, such as community adoption are also important. It was reported that Facebook moved away from the Erlang language because [it was hard to find qualified programmers](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html)
 
 Having said that, it is worthy to note that Javascript excels in I/O intense applications, and less so in CPU intense applications.  
 
 ## Semantics
 Each subchapter/subject is denoted with (D),(S) or (B) to indicate how it compares across both languages with 'mostly **D**ifferent', 'mostly **S**imilar' or 'mostly **B**oth'.
 
-The current version of Javascript is ECMAScript 2016 (ES7). ES7 includes only minor changes, however the two previous releases, ECMAScript 2015 (ES6) and ECMAScript 5.1 (ES5), had introduced major. These two version are widely used, with ES5 being a popular choice for client side programming for it's wide browser support. Hence, ES5 will be default syntax, with special notes on ES6 where applicable. Also, some subjects will note the run-time environment "NodeJS".
+The current version of Javascript is ECMAScript 2016 (ES7). ES7 includes only minor changes, however the two previous releases, ECMAScript 2015 (ES6) and ECMAScript 5.1 (ES5), had introduced major changes. These two version are widely used, with ES5 being a popular choice for client side programming for it's wide browser support. Hence, ES5 will be default syntax, with special notes on ES6 where applicable. Also, some subjects will note the run-time environment "NodeJS".
 
 ## Contributions
 This document is a work in progress. Contributions and PRs are most welcomed.
