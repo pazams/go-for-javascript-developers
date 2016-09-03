@@ -59,7 +59,8 @@ Having said that, it is worthy to note that Javascript excels in I/O intense app
 ## Semantics
 Each subchapter/subject is denoted with (D),(S) or (B) to indicate how it compares across both languages with 'mostly **D**ifferent', 'mostly **S**imilar' or 'mostly **B**oth'.
 
-The current version of Javascript is ECMAScript 2016 (ES7). ES7 includes only minor changes, however the two previous releases, ECMAScript 2015 (ES6) and ECMAScript 5.1 (ES5), had introduced major changes. These two version are widely used, with ES5 being a popular choice for client side programming for it's wide browser support. Hence, ES5 will be default syntax, with special notes on ES6 where applicable. Also, some subjects will note the run-time environment "NodeJS".
+This book uses ECMAScript 2015 (ES6).
+Also, some subjects will note the run-time environment "NodeJS".
 
 ## Contributions
 This document is a work in progress. Contributions and PRs are most welcomed.
@@ -132,13 +133,6 @@ fmt.Println(a.message === b.message) // prints "true"
 ### For
 **JS**
 ```Javascript
-// es5 syntax that emphasis i's scope
-var i=0;
-for(;i<10;i++){
-    console.log(i);
-}
-
-// es6 syntax with block scope
 for(let i=0;i<10;i++){
     console.log(i);
 }
