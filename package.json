@@ -1,0 +1,17 @@
+{
+  "name": "diff-go-js",
+  "version": "0.0.1",
+  "description": "A comparesion bettwen Go and Javascript, a.k.a Go for Javascript developers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "toc": "node_modules/doctoc/doctoc.js README.md",
+    "serve": "node_modules/markserv/server.js"
+  },
+  "author": "http://www.github.com/pazams",
+  "license": "MIT",
+  "devDependencies": {
+    "doctoc": "^1.2.0",
+    "markserv": "0.0.18"
+  }
+}
