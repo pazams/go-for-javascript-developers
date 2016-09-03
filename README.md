@@ -59,7 +59,7 @@ Having said that, it is worthy to note that Javascript excels in I/O intense app
 ## Semantics
 Each subchapter/subject is denoted with (D),(S) or (B) to indicate how it compares across both languages with 'mostly **D**ifferent', 'mostly **S**imilar' or 'mostly **B**oth'.
 
-This book uses ECMAScript 2015 (ES6)
+This book uses ECMAScript 2015 (ES6).
 Also, some subjects will note the run-time environment "NodeJS".
 
 ## Contributions
@@ -133,11 +133,6 @@ fmt.Println(a.message === b.message) // prints "true"
 ### For
 **JS**
 ```Javascript
-var i=0;
-for(;i<10;i++){
-    console.log(i);
-}
-
 for(let i=0;i<10;i++){
     console.log(i);
 }
