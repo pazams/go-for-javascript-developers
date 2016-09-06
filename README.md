@@ -82,9 +82,9 @@ Go is compiled. Javascript is not, though some Javascript runtimes use JIT compi
 ## (D) Values, Pointers, References
 
 In Javascript there are value types and reference types. Primitives such as `string` and `number` are value types. Objects, including arrays and functions, are reference types.
-
-In Go, there are only value types, with pointers being a special case of value types.
-The most practical thing to remember about references and pointers, is that while you can use both to mutate the underlaying value (when it is mutable), with pointers you can also reassign it.
+ 
+In Go, there are value types, reference types, and pointers. References types are slices, maps, and channels. All the rest are value types, but have the ability "*to be referenced*" with pointers.
+The most practical difference to remember between references and pointers, is that while you can use both to mutate the underlaying value (when it is mutable), with pointers you can also reassign it.
 
 **JS**
 ```Javascript
