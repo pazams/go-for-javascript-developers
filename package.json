@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "toc": "node_modules/doctoc/doctoc.js README.md",
-    "fmt": "data=\"$(cat README.md | mdgofmt-cli)\"; ! [[ -z $data ]] && echo \"$data\" > README.md",
+    "fmt": "data=\"$(cat README.md | mdgofmt-cli)\" && ! [ -z \"$data\" ] && echo \"$data\" > README.md",
     "build": "npm run toc; npm run fmt",
     "serve": "node_modules/markserv/server.js"
   },
