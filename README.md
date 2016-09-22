@@ -108,21 +108,21 @@ console.log(a.message === b.message); // prints 'false'
 **Go**
 ```Go
 a := struct {
-    message string
+	message string
 }{"hello"}
 
-b := &a;
+b := &a
 
 // mutate
 // note b.message is short for (*b).message
-b.message = "goodbye";
+b.message = "goodbye"
 fmt.Println(a.message == b.message) // prints "true"
 
 // reassign
 *b = struct {
-    message string
+	message string
 }{"galaxy"}
-fmt.Println(a.message === b.message) // prints "true"
+fmt.Println(a.message == b.message) // prints "true"
 ```
 
 ## Types
@@ -141,7 +141,7 @@ for(let i=0;i<10;i++){
 **Go**
 ```Go
 for i := 0; i < 10; i++ {
-    fmt.Println(i)
+	fmt.Println(i)
 }
 ```
 
@@ -159,10 +159,10 @@ while(i<10){
 
 **Go**
 ```Go
-i :=0
-for i < 10{
-    fmt.Println(i)
-    i++
+i := 0
+for i < 10 {
+	fmt.Println(i)
+	i++
 }
 ```
 ###Iterating over an Array/Slice
@@ -177,7 +177,7 @@ for i < 10{
 **Go**
 ```Go
 for index, value := range []string{"Rick", "Morty", "Beth", "Summer", "Jerry"} {
-    fmt.Printf("%v at index %d \n", value, index)
+	fmt.Printf("%v at index %d", value, index)
 }
 ```
 
@@ -188,10 +188,9 @@ Go's `if` can contain an init statement, with variables declared scoped only to 
 **Go**
 ```Go
 if value := getSomeValue(); value < limit {
-    return value 
-}
-else {
-    return value/2
+	return value
+} else {
+	return value / 2
 }
 ```
 
@@ -217,15 +216,15 @@ switch (favorite) {
 **Go**
 ```Go
 switch favorite {
-    case "yellow":
-        fmt.Println("you like the color yellow")
-    case "red":
-        fmt.Println("you like the color red")
-        fallthrough
-    case "pruple":
-        fmt.Println("you like the color purple")
-    default:
-        fmt.Println("you like the color white")
+case "yellow":
+	fmt.Println("you like the color yellow")
+case "red":
+	fmt.Println("you like the color red")
+	fallthrough
+case "pruple":
+	fmt.Println("you like the color purple")
+default:
+	fmt.Println("you like the color white")
 }
 ```
 
