@@ -42,9 +42,9 @@
 
 Often, a developer will use more than one programming language at a certain timeframe. Switching back and forth between languages can come with some overhead. These context switches can also result in bugs. For instance, if you switch back and forth between Python and Javascript, there's a likelihood you'll mistake evaluation of an empty array between truthy and falsey. Similarly, if you switch back and forth between Go and Javascript, there's a likelihood you'll make a mistake `switch` statements default behavior of break/fallthrough. Outlining the differences between languages can help mitigate these potential issues, and make it easier to transition back and forth.
 
-This book compares between two programming languages, Golang (or "Go") and ECMAScript (or "Javascript" / "JS"). The merits of this pairing is the popularity of these languages. That's it. They are not similar, in fact, they are quite different. Javascript is an event driven, dynamically typed and interpreted language, while Go is a statically typed and compiled language.
+This document compares between two programming languages, Golang (or "Go") and ECMAScript (or "Javascript" / "JS"). The merits of this pairing is the popularity of these languages. That's it. They are not similar, in fact, they are quite different. Javascript is an event driven, dynamically typed and interpreted language, while Go is a statically typed and compiled language.
 
-If you're reading this there's a high chance you already know your Javascript and are just starting with Go. If so, make sure you first complete [A tour of go]()
+If you're reading this there's a high chance you already know your Javascript and are just starting with Go. If so, make sure you first complete [A tour of go](https://tour.golang.org).
 
 ## Which language should I use?
 
@@ -59,7 +59,7 @@ Having said that, it is worthy to note that Javascript excels in I/O intense app
 ## Semantics
 Each subchapter/subject is denoted with (D),(S) or (B) to indicate how it compares across both languages with 'mostly **D**ifferent', 'mostly **S**imilar' or 'mostly **B**oth'.
 
-This book uses ECMAScript 2015 (ES6).
+This document uses ECMAScript 2015 (ES6).
 Also, some subjects will note the run-time environment "NodeJS".
 
 ## Contributions
@@ -184,8 +184,8 @@ for i < 10 {
 
 **Go**
 ```Go
-for index, value := range []string{"Rick", "Morty", "Beth", "Summer", "Jerry"} {
-	fmt.Printf("%v at index %d", value, index)
+for i, v := range []string{"Rick", "Morty", "Beth", "Summer", "Jerry"} {
+	fmt.Printf("%v at index %d", v, i)
 }
 ```
 
@@ -203,20 +203,24 @@ if value := getSomeValue(); value < limit {
 ```
 
 ## (D) Switch 
-The switch statement was one of the motivation for writing this book. Go default behavior inside switch statement is break, while in Javascript it is the other way around
+The switch statement was one of the motivation for writing this document. 
+
+Go defaults to break, and `fallthrough` needed for otherwise.
+
+Javascript defaults to fallthrough, and `break` needed for otherwise.
 
 **JS**
 ```Javascript
 switch (favorite) {
     case "yellow":
-        console.log("you like the color yellow");
+        console.log("yellow");
         break;
     case "red":
-        console.log("you like the color red");
+        console.log("red");
     case "pruple":
-        console.log("you like the color purple");
+        console.log("(and) purple");
     default:
-        console.log("you like the color white");
+        console.log("white");
 } 
 
 ```
@@ -225,14 +229,14 @@ switch (favorite) {
 ```Go
 switch favorite {
 case "yellow":
-	fmt.Println("you like the color yellow")
+	fmt.Println("yellow")
 case "red":
-	fmt.Println("you like the color red")
+	fmt.Println("red")
 	fallthrough
 case "pruple":
-	fmt.Println("you like the color purple")
+	fmt.Println("(and) purple")
 default:
-	fmt.Println("you like the color white")
+	fmt.Println("white")
 }
 ```
 
@@ -246,10 +250,10 @@ default:
 # Patterns
 
 # Quick Syntax Reminders
-## (D) Strings
+## (D) String literals
 Javascript strings are initialized with single quotes (`'hello'`) or double quotes (`"hello"`). Most Javascripts coding styles prefer the single quotes variation.
 
-Go strings are initialized only with double quotes (`"hello"`).
+Go strings initialized with double quotes (`"hello"`) or raw string literals with backticks (``` `hello` ```)
 
 ## (S) Comments
 Both languages use the same `/* block comments */`  and `// line comments`.
