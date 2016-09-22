@@ -69,6 +69,14 @@ If you edit the chapters layout, be sure to rebuild the table of contents by
 npm install
 npm run toc
 ```
+If you edit go code, be sure to format it with (requires [mdgofmt-cli](https://github.com/pazams/mdgofmt-cli))
+```bash
+npm run fmt
+```
+Or just run both commands with
+```bash
+npm run build
+```
 
 # Internals
 ## (S) Heap/Stack Memory Allocation
