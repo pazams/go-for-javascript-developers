@@ -31,6 +31,7 @@
   - [(D) Multiple returns](#d-multiple-returns)
   - [(S) IIFE](#s-iife)
   - [(S) Closures](#s-closures)
+- [Concurrency](#concurrency)
 - [Package Management](#package-management)
 - [Patterns](#patterns)
 - [Quick Syntax Reminders](#quick-syntax-reminders)
@@ -344,6 +345,16 @@ for i := 0; i < 10; i++ {
 wg.Wait()
 ```
 
+# Concurrency 
+The best way to describe concurrency in javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
+>  Well, in node everything runs in parallel, except your code.
+
+So while your JS runtime may use multiple threads for IO, your own code is getting run just by one. That's just how the *evented* model works.
+Different JS runtimes offer some options for concurrency or parallelism: NodeJS offers [clustering](https://nodejs.org/docs/latest/api/cluster.html), and Browsers offer [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
+
+On the other hand, Go is all about concurrency. It offers Goroutines which enables functions to execute concurrently, and channels to communicate between them. While Go standard library has the "sync" package for synchronization primitives, it [encourages](https://blog.golang.org/share-memory-by-communicating) more the use of Goroutines and channels, summarized as:
+
+> Do not communicate by sharing memory; instead, share memory by communicating
 
 # Package Management
 
