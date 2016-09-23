@@ -32,7 +32,9 @@
   - [(S) IIFE](#s-iife)
   - [(S) Closures](#s-closures)
 - [Concurrency](#concurrency)
-- [Package Management](#package-management)
+- [Packages](#packages)
+  - [Import system](#import-system)
+  - [Management](#management)
 - [Patterns](#patterns)
 - [Quick Syntax Reminders](#quick-syntax-reminders)
   - [(D) String literals](#d-string-literals)
@@ -360,8 +362,23 @@ More on this subject:
 - [Go Concurrency Patterns](https://talks.golang.org/2012/concurrency.slide#1)
 - [Advanced Go Concurrency Patterns](https://talks.golang.org/2013/advconc.slide#1)
 
-# Package Management
+# Packages
+## Import system
+Javascript has an official [import statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import), however the external specs of AMD & CommonJS are more popular since the language began to address this issue rather late. 
 
+Go's import statement and package support were part of the spec from the beginning. As of Go 1.6 (or 1.5 + flag), there's better support for encapsulating dependent packages inside a project with the [vendor folder](https://blog.gopheracademy.com/advent-2015/vendor-folder/). However, it doesn't attempt so solve everything:
+> … this does not attempt to solve the problem of vendoring resulting in multiple copies of a package being linked into a single binary. Sometimes having multiple copies of a library is not a problem; sometimes it is. At least for now, it doesn’t seem that the go command should be in charge of policing or solving that problem.
+
+## Management
+For Javascript development, NPM is the de-facto package manager for NodeJS, and may also be used for client side projects. Bower is also a popular for client side projects.
+
+The go tool will only get your as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list: 
+- https://github.com/kovetskiy/manul
+- https://github.com/tools/godep
+- https://github.com/kardianos/govendor
+- https://github.com/FiloSottile/gvt
+- https://github.com/Masterminds/glide
+- https://github.com/mattn/gom
 
 # Patterns
 
