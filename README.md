@@ -49,7 +49,7 @@ Often, a developer will use more than one programming language at a certain time
 
 This document compares between two programming languages, Golang (or "Go") and ECMAScript (or "Javascript" / "JS"). The merits of this pairing is the popularity of these languages. That's it. They are not similar, in fact, they are quite different. Javascript is an event driven, dynamically typed and interpreted language, while Go is a statically typed and compiled language.
 
-If you're reading this there's a high chance you already know your Javascript and are just starting with Go. If so, make sure you first complete [A tour of go](https://tour.golang.org).
+If you're reading this there's a high chance you already know your Javascript and are just starting with Go. If so, make sure you first complete [A tour of go](https://tour.golang.org) and [Effective go](https://golang.org/doc/effective_go.html).
 
 ## Which language should I use?
 
@@ -356,7 +356,12 @@ On the other hand, Go is all about concurrency. It offers Goroutines which enabl
 
 > Do not communicate by sharing memory; instead, share memory by communicating
 
+More on this subject: 
+- [Go Concurrency Patterns](https://talks.golang.org/2012/concurrency.slide#1)
+- [Advanced Go Concurrency Patterns](https://talks.golang.org/2013/advconc.slide#1)
+
 # Package Management
+
 
 # Patterns
 
