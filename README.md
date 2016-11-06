@@ -15,6 +15,19 @@
   - [(S) Heap/Stack Memory Allocation](#s-heapstack-memory-allocation)
   - [(S) Garbage Collection](#s-garbage-collection)
   - [(D) Compilation](#d-compilation)
+- [Concurrency](#concurrency)
+- [Packages](#packages)
+  - [Import system](#import-system)
+  - [Management](#management)
+- [Patterns](#patterns)
+- [Keywords & Syntax Comparison](#keywords-&-syntax-comparison)
+  - [(D) `this` keyword](#d-this-keyword)
+  - [(D) `new` keyword](#d-new-keyword)
+  - [(D) bind / method values](#d-bind--method-values)
+  - [(S) setTimeout / timer](#s-settimeout--timer)
+  - [(D) setInterval / ticker](#d-setinterval--ticker)
+  - [(D) String literals](#d-string-literals)
+  - [(S) Comments](#s-comments)
 - [Variables](#variables)
   - [(D) Values, Pointers, References](#d-values-pointers-references)
   - [Types](#types)
@@ -31,19 +44,6 @@
   - [(D) Multiple returns](#d-multiple-returns)
   - [(S) IIFE](#s-iife)
   - [(S) Closures](#s-closures)
-- [Concurrency](#concurrency)
-- [Packages](#packages)
-  - [Import system](#import-system)
-  - [Management](#management)
-- [Patterns](#patterns)
-- [Keywords & Syntax Comparison](#keywords-&-syntax-comparison)
-  - [(D) `this` keyword](#d-this-keyword)
-  - [(D) `new` keyword](#d-new-keyword)
-  - [(D) bind / method values](#d-bind--method-values)
-  - [(S) setTimeout / timer](#s-settimeout--timer)
-  - [(D) setInterval / ticker](#d-setinterval--ticker)
-  - [(D) String literals](#d-string-literals)
-  - [(S) Comments](#s-comments)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -97,6 +97,133 @@ Concepts such "Heap" and "Stack" are abstracted away in both languages. You do n
 Garbage collection is implemented in both languages.
 ## (D) Compilation 
 Go is compiled. Javascript is not, though some Javascript runtimes use JIT compilation. From the developer experience perspective, the biggest effect of compiled languages is compile-time safety. You get compile-time safety with Go, while in Javascript you can use external code linters to ease the missing of this feature.
+
+# Concurrency 
+The best way to describe concurrency in javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
+>  Well, in node everything runs in parallel, except your code.
+
+So while your JS runtime may use multiple threads for IO, your own code is getting run just by one. That's just how the *evented* model works.
+Different JS runtimes offer some options for concurrency or parallelism: NodeJS offers [clustering](https://nodejs.org/docs/latest/api/cluster.html), and Browsers offer [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
+
+On the other hand, Go is all about concurrency. It offers Goroutines which enables functions to execute concurrently, and channels to communicate between them. While Go standard library has the "sync" package for synchronization primitives, it [encourages](https://blog.golang.org/share-memory-by-communicating) more the use of Goroutines and channels, summarized as:
+
+> Do not communicate by sharing memory; instead, share memory by communicating
+
+More on this subject: 
+- [Go Concurrency Patterns](https://talks.golang.org/2012/concurrency.slide#1)
+- [Advanced Go Concurrency Patterns](https://talks.golang.org/2013/advconc.slide#1)
+
+# Packages
+## Import system
+Javascript has an official [import statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import), however the external specs of AMD & CommonJS are more popular since the language began to address this issue rather late. 
+
+Go's import statement and package support were part of the spec from the beginning. As of Go 1.6 (or 1.5 + flag), there's better support for encapsulating dependent packages inside a project with the [vendor folder](https://blog.gopheracademy.com/advent-2015/vendor-folder/). However, it doesn't attempt so solve everything:
+> … this does not attempt to solve the problem of vendoring resulting in multiple copies of a package being linked into a single binary. Sometimes having multiple copies of a library is not a problem; sometimes it is. At least for now, it doesn’t seem that the go command should be in charge of policing or solving that problem.
+
+## Management
+For Javascript development, NPM is the de-facto package manager for NodeJS, and may also be used for client side projects. Bower is also a popular for client side projects.
+
+The go tool will only get your as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list: 
+- https://github.com/kovetskiy/manul
+- https://github.com/tools/godep
+- https://github.com/kardianos/govendor
+- https://github.com/FiloSottile/gvt
+- https://github.com/Masterminds/glide
+- https://github.com/mattn/gom
+
+# Patterns
+
+# Keywords & Syntax Comparison
+
+## (D) `this` keyword
+**JS**
+
+Inside an object method, `this` refers to the object (with some exceptions).
+
+**Go**
+
+In Go, the closest analogy would be receivers inside method functions.
+You *may* use `this` as a receiver:
+```Go
+type Boo struct {
+	foo string
+}
+
+func (this *Boo) Foo() string {
+	return this.foo
+}
+```
+It is more idiomatic to use short variables as receivers. In the example above `b` would have been a better fit over `this`.
+
+## (D) `new` keyword
+**JS**
+
+`new Foo()` instantiates an object from `Foo`, a constructor function.
+
+**Go**
+
+`new(T)` allocates zeroed storage for a new item of type `T` and returns a pointer, `*T`. This is different than Javascript and most other languages where `new` will **initialize** the object, while in Golang it only **zeros** it.
+
+It is worthy to mention that it is [idiomatic](https://blog.golang.org/package-names) to name methods with a "New" prefix to denote it returns a pointer to the type following in the method name. e.g:
+```Go
+timer := time.NewTimer(d) // timer is a *time.Timer
+```
+
+## (D) bind / method values
+
+**JS**
+```JS
+var f = boo.foo.bind(boo2); // when calling f(), "this" will refer to boo2
+```
+
+**Go**
+```Go
+f := boo.foo // f(), is same as boo.foo()
+```
+
+## (S) setTimeout / timer
+
+**JS**
+```JS
+setTimeout(3*1000, somefunction)
+```
+
+**Go**
+```Go
+time.AfterFunc(3*time.Second, somefunction)
+```
+
+## (D) setInterval / ticker
+
+**JS**
+```JS
+setInterval(3*1000, somefunction)
+```
+
+**Go**
+```Go
+ticker := time.NewTicker(3 * time.Second)
+go func() {
+	for t := range ticker.C {
+		somefunction()
+	}
+}()
+```
+
+## (D) String literals
+**JS**
+
+strings are initialized with single quotes (`'hello'`) or double quotes (`"hello"`). Most coding styles prefer the single quotes variation.
+
+**Go**
+
+strings are initialized with double quotes (`"hello"`) or raw string literals with backticks (``` `hello` ```)
+
+## (S) Comments
+Both languages use the same `/* block comments */`  and `// line comments`.
+
+
+
 
 # Variables
 ## (D) Values, Pointers, References
@@ -351,131 +478,6 @@ for i := 0; i < 10; i++ {
 }
 wg.Wait()
 ```
-
-# Concurrency 
-The best way to describe concurrency in javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
->  Well, in node everything runs in parallel, except your code.
-
-So while your JS runtime may use multiple threads for IO, your own code is getting run just by one. That's just how the *evented* model works.
-Different JS runtimes offer some options for concurrency or parallelism: NodeJS offers [clustering](https://nodejs.org/docs/latest/api/cluster.html), and Browsers offer [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
-
-On the other hand, Go is all about concurrency. It offers Goroutines which enables functions to execute concurrently, and channels to communicate between them. While Go standard library has the "sync" package for synchronization primitives, it [encourages](https://blog.golang.org/share-memory-by-communicating) more the use of Goroutines and channels, summarized as:
-
-> Do not communicate by sharing memory; instead, share memory by communicating
-
-More on this subject: 
-- [Go Concurrency Patterns](https://talks.golang.org/2012/concurrency.slide#1)
-- [Advanced Go Concurrency Patterns](https://talks.golang.org/2013/advconc.slide#1)
-
-# Packages
-## Import system
-Javascript has an official [import statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import), however the external specs of AMD & CommonJS are more popular since the language began to address this issue rather late. 
-
-Go's import statement and package support were part of the spec from the beginning. As of Go 1.6 (or 1.5 + flag), there's better support for encapsulating dependent packages inside a project with the [vendor folder](https://blog.gopheracademy.com/advent-2015/vendor-folder/). However, it doesn't attempt so solve everything:
-> … this does not attempt to solve the problem of vendoring resulting in multiple copies of a package being linked into a single binary. Sometimes having multiple copies of a library is not a problem; sometimes it is. At least for now, it doesn’t seem that the go command should be in charge of policing or solving that problem.
-
-## Management
-For Javascript development, NPM is the de-facto package manager for NodeJS, and may also be used for client side projects. Bower is also a popular for client side projects.
-
-The go tool will only get your as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list: 
-- https://github.com/kovetskiy/manul
-- https://github.com/tools/godep
-- https://github.com/kardianos/govendor
-- https://github.com/FiloSottile/gvt
-- https://github.com/Masterminds/glide
-- https://github.com/mattn/gom
-
-# Patterns
-
-# Keywords & Syntax Comparison
-
-## (D) `this` keyword
-**JS**
-
-Inside an object method, `this` refers to the object (with some exceptions).
-
-**Go**
-
-In Go, the closest analogy would be receivers inside method functions.
-You *may* use `this` as a receiver:
-```Go
-type Boo struct {
-	foo string
-}
-
-func (this *Boo) Foo() string {
-	return this.foo
-}
-```
-It is more idiomatic to use short variables as receivers. In the example above `b` would have been a better fit over `this`.
-
-## (D) `new` keyword
-**JS**
-
-`new Foo()` instantiates an object from `Foo`, a constructor function.
-
-**Go**
-
-`new(T)` allocates zeroed storage for a new item of type `T` and returns a pointer, `*T`. This is different than Javascript and most other languages where `new` will **initialize** the object, while in Golang it only **zeros** it.
-
-It is worthy to mention that it is [idiomatic](https://blog.golang.org/package-names) to name methods with a "New" prefix to denote it returns a pointer to the type following in the method name. e.g:
-```Go
-timer := time.NewTimer(d) // timer is a *time.Timer
-```
-
-## (D) bind / method values
-
-**JS**
-```JS
-var f = boo.foo.bind(boo2); // when calling f(), "this" will refer to boo2
-```
-
-**Go**
-```Go
-f := boo.foo // f(), is same as boo.foo()
-```
-
-## (S) setTimeout / timer
-
-**JS**
-```JS
-setTimeout(3*1000, somefunction)
-```
-
-**Go**
-```Go
-time.AfterFunc(3*time.Second, somefunction)
-```
-
-## (D) setInterval / ticker
-
-**JS**
-```JS
-setInterval(3*1000, somefunction)
-```
-
-**Go**
-```Go
-ticker := time.NewTicker(3 * time.Second)
-go func() {
-	for t := range ticker.C {
-		somefunction()
-	}
-}()
-```
-
-## (D) String literals
-**JS**
-
-strings are initialized with single quotes (`'hello'`) or double quotes (`"hello"`). Most coding styles prefer the single quotes variation.
-
-**Go**
-
-strings are initialized with double quotes (`"hello"`) or raw string literals with backticks (``` `hello` ```)
-
-## (S) Comments
-Both languages use the same `/* block comments */`  and `// line comments`.
-
 # License
 
 Copyright Maor Zamski & Daniel Singer
