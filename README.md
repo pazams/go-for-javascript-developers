@@ -52,7 +52,7 @@
 
 ## Preface
 
-Often, a developer will use more than one programming language at a certain timeframe. Switching back and forth between languages can come with some overhead. These context switches can also result in bugs. For instance, if you switch back and forth between Python and Javascript, there's a likelihood you'll mistake evaluation of an empty array between truthy and falsey. Similarly, if you switch back and forth between Go and Javascript, there's a likelihood you'll make a mistake `switch` statements default behavior of break/fallthrough. Outlining the differences between languages can help mitigate these potential issues, and make it easier to transition back and forth.
+Often, a developer will use more than one programming language at a certain timeframe. Switching back and forth between languages can come with some overhead. These context switches can also result in bugs. For instance, if you switch back and forth between Python and Javascript, there's a likelihood you'll mistake evaluation of an empty array between truthy and falsey. Similarly, if you switch back and forth between Go and Javascript, there's a likelihood you'll mistake `switch` statements default behavior of break/fallthrough. Outlining the differences between languages can help mitigate these potential issues, and make it easier to transition back and forth.
 
 This document compares between two programming languages, Golang (or "Go") and ECMAScript (or "Javascript" / "JS"). The merits of this pairing is the popularity of these languages. That's it. They are not similar, in fact, they are quite different. Javascript is an event driven, dynamically typed and interpreted language, while Go is a statically typed and compiled language.
 
@@ -213,17 +213,14 @@ go func() {
 ## (D) String literals
 **JS**
 
-strings are initialized with single quotes (`'hello'`) or double quotes (`"hello"`). Most coding styles prefer the single quotes variation.
+Strings are initialized with single quotes (`'hello'`) or double quotes (`"hello"`). Most coding styles prefer the single quotes variation.
 
 **Go**
 
-strings are initialized with double quotes (`"hello"`) or raw string literals with backticks (``` `hello` ```)
+Strings are initialized with double quotes (`"hello"`) or raw string literals with backticks (``` `hello` ```)
 
 ## (S) Comments
 Both languages use the same `/* block comments */`  and `// line comments`.
-
-
-
 
 # Variables
 ## (D) Values, Pointers, References
