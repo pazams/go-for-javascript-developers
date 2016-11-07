@@ -430,7 +430,7 @@ func main() {
 ```
 
 ## (S) Closures
-Both languages have closures. Both require caution when [creating clousres inside loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Creating_closures_in_loops_A_common_mistake). Here are examples in both languages that demonstrate a similar technique to bypass the closure/loop trap:
+Both languages have closures. Both require caution when [creating closures inside loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Creating_closures_in_loops_A_common_mistake). Here are examples in both languages that demonstrate a similar technique to bypass the closure/loop trap:
 
 **JS (with bug)**
 ```Javascript
