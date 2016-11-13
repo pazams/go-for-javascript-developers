@@ -20,6 +20,7 @@
   - [Spec & Practice](#spec--practice)
   - [Management](#management)
 - [Patterns](#patterns)
+- [Error Handling](#error-handling)
 - [Keywords & Syntax Comparison](#keywords--syntax-comparison)
   - [(D) `this` keyword](#d-this-keyword)
   - [(D) `new` keyword](#d-new-keyword)
@@ -38,7 +39,6 @@
     - [While](#while)
   - [(B) If/Else](#b-ifelse)
   - [(D) Switch](#d-switch)
-  - [(D) Defer](#d-defer)
 - [Functions](#functions)
   - [(S) first-class functions](#s-first-class-functions)
   - [(D) Multiple returns](#d-multiple-returns)
@@ -146,6 +146,10 @@ The `go get` tool will only get you as far as getting a dependency latest master
 - https://github.com/mattn/gom
 
 # Patterns
+TBD
+
+# Error Handling
+TBD
 
 # Keywords & Syntax Comparison
 
@@ -285,6 +289,7 @@ fmt.Println(a.message == b.message) // prints "true"
 
 ## Types
 ### Dynamic VS Static
+TBD
 
 # Flow control statements 
 ## (B) Loops and iteration
@@ -389,9 +394,6 @@ default:
 	fmt.Println("white")
 }
 ```
-
-
-## (D) Defer
 
 # Functions
 ## (S) first-class functions
