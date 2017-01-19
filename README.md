@@ -66,7 +66,7 @@ You should always pick the right tool for the right job. Unfortunately, there wi
 
 Aside of technical considerations, other considerations, such as community adoption are also important. It was reported that Facebook moved away from the Erlang language because [it was hard to find qualified programmers](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html)
 
-Having said that, it is worthy to note that Javascript excels in I/O intense applications, and less so in CPU intense applications.  
+Having said that, it is worthy to note that Javascript excels in I/O intense applications, and less so in CPU intense applications.
 
 ## Semantics
 Each subchapter/subject is denoted with (D),(S) or (B) to indicate how it compares across both languages with 'mostly **D**ifferent', 'mostly **S**imilar' or 'mostly **B**oth'.
@@ -95,10 +95,10 @@ npm run build
 Concepts such "Heap" and "Stack" are abstracted away in both languages. You do not needed to worry about it. Even though GO has pointers, it uses [escape analysis](http://blog.rocana.com/golang-escape-analysis) in compile-time to figure out the memory allocation.
 ## (S) Garbage Collection
 Garbage collection is implemented in both languages.
-## (D) Compilation 
+## (D) Compilation
 Go is compiled. Javascript is not, though some Javascript runtimes use JIT compilation. From the developer experience perspective, the biggest effect of compiled languages is compile-time safety. You get compile-time safety with Go, while in Javascript you can use external code linters to ease the missing of this feature.
 
-# Concurrency 
+# Concurrency
 The best way to describe concurrency in javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
 >  Well, in node everything runs in parallel, except your code.
 
@@ -109,7 +109,7 @@ On the other hand, Go is all about concurrency. It offers Goroutines which enabl
 
 > Do not communicate by sharing memory; instead, share memory by communicating
 
-More on this subject: 
+More on this subject:
 - [Go Concurrency Patterns](https://talks.golang.org/2012/concurrency.slide#1)
 - [Advanced Go Concurrency Patterns](https://talks.golang.org/2013/advconc.slide#1)
 
@@ -117,9 +117,9 @@ More on this subject:
 ## Spec & Practice
 **JS**
 
-As of es6, the Javascript spec includes a module system, however the external specs of AMD and CommonJS are also popular since the language began to address this issue rather late. 
+As of es6, the Javascript spec includes a module system, however the external specs of AMD and CommonJS are also popular since the language began to address this issue rather late.
 
-Before es6 modules, the spec only supported the *script* mode, of which every file shares the same top-level global scope. This means that there was no official "file scope" for scripts. In practice, file-module scope was common since it was either introduced by code (`window.moduleA = …`), an external tool (requireJS), or by a runtime that baked-in a module system (NodeJS). 
+Before es6 modules, the spec only supported the *script* mode, of which every file shares the same top-level global scope. This means that there was no official "file scope" for scripts. In practice, file-module scope was common since it was either introduced by code (`window.moduleA = …`), an external tool (requireJS), or by a runtime that baked-in a module system (NodeJS).
 
 Therefore, it is safe to say that Javascript programs are commonly structured with a 1-to-1 relationship between files and modules with local scope.
 
@@ -137,7 +137,7 @@ Another difference is the consumption of other internal components within your p
 ## Management
 For Javascript development, NPM is the de-facto package manager for NodeJS, and may also be used for client side projects. Bower is also a popular for client side projects.
 
-The `go get` tool will only get you as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list: 
+The `go get` tool will only get you as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list:
 - https://github.com/kovetskiy/manul
 - https://github.com/tools/godep
 - https://github.com/kardianos/govendor
@@ -203,7 +203,7 @@ f := boo.foo // f(), is same as boo.foo()
 
 **JS**
 ```JS
-setTimeout(3*1000, somefunction)
+setTimeout(somefunction, 3*1000)
 ```
 
 **Go**
@@ -215,7 +215,7 @@ time.AfterFunc(3*time.Second, somefunction)
 
 **JS**
 ```JS
-setInterval(3*1000, somefunction)
+setInterval(somefunction, 3*1000)
 ```
 
 **Go**
@@ -244,7 +244,7 @@ Both languages use the same `/* block comments */`  and `// line comments`.
 ## (D) Values, Pointers, References
 
 In Javascript there are value types and reference types. Primitives such as `string` and `number` are value types. Objects, including arrays and functions, are reference types.
- 
+
 In Go, there are value types, reference types, and pointers. References types are slices, maps, and channels. All the rest are value types, but have the ability "*to be referenced*" with pointers.
 The most practical difference to remember between references and pointers, is that while you can use both to mutate the underlaying value (when it is mutable), with pointers you can also reassign it.
 
@@ -291,7 +291,7 @@ fmt.Println(a.message == b.message) // prints "true"
 ### Dynamic VS Static
 TBD
 
-# Flow control statements 
+# Flow control statements
 ## (B) Loops and iteration
 ### For
 **JS**
@@ -345,7 +345,7 @@ for i, v := range []string{"Rick", "Morty", "Beth", "Summer", "Jerry"} {
 ```
 
 
-## (B) If/Else 
+## (B) If/Else
 Go's `if` can contain an init statement, with variables declared scoped only to the `if` and `else` blocks.
 
 **Go**
@@ -357,8 +357,8 @@ if value := getSomeValue(); value < limit {
 }
 ```
 
-## (D) Switch 
-The switch statement was one of the motivation for writing this document. 
+## (D) Switch
+The switch statement was one of the motivation for writing this document.
 
 Go defaults to break, and `fallthrough` needed for otherwise.
 
@@ -376,7 +376,7 @@ switch (favorite) {
         console.log("(and) purple");
     default:
         console.log("white");
-} 
+}
 
 ```
 
@@ -401,7 +401,7 @@ Both langauges treat functions as first-class citizens. Both allow functions to 
 
 Function nesting in Javascript can be done both with named and anonymous functions, while in Go this can only be done with anonymous functions.
 
-## (D) Multiple returns 
+## (D) Multiple returns
 Go functions can return multiple values
 
 **Go**
