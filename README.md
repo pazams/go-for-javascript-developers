@@ -20,7 +20,7 @@
   - [Spec & Practice](#spec--practice)
   - [Management](#management)
 - [Patterns](#patterns)
-- [Error Handling](#error-handling)
+- [Error Handling](#d-error-handling)
 - [Keywords & Syntax Comparison](#keywords--syntax-comparison)
   - [(D) `this` keyword](#d-this-keyword)
   - [(D) `new` keyword](#d-new-keyword)
