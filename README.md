@@ -397,7 +397,7 @@ default:
 
 # Functions
 ## (S) first-class functions
-Both langauges treat functions as first-class citizens. Both allow functions to be passed as arguments, to be a returned value, to be nested, and have closures.
+Both languages treat functions as first-class citizens. Both allow functions to be passed as arguments, to be a returned value, to be nested, and have closures.
 
 Function nesting in Javascript can be done both with named and anonymous functions, while in Go this can only be done with anonymous functions.
 
