@@ -139,13 +139,15 @@ For Javascript development, NPM is the de-facto package manager for NodeJS, and 
 
 The `go get` tool will only get you as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list:
 
-- https://github.com/golang/dep
 - https://github.com/kovetskiy/manul
 - https://github.com/tools/godep
 - https://github.com/kardianos/govendor
 - https://github.com/FiloSottile/gvt
 - https://github.com/Masterminds/glide
 - https://github.com/mattn/gom
+
+Go has acknowledged the need for a dependency management tool by starting its own project: https://github.com/golang/dep .
+As of the time of writing, it is still in Alpha phase, and not part of official Go toolchain yet. Watch that project for status updates!
 
 # Patterns
 TBD
