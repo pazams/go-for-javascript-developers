@@ -138,6 +138,8 @@ Another difference is the consumption of other internal components within your p
 For Javascript development, NPM is the de-facto package manager for NodeJS, and may also be used for client side projects. Bower is also a popular for client side projects.
 
 The `go get` tool will only get you as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list:
+
+- https://github.com/golang/dep
 - https://github.com/kovetskiy/manul
 - https://github.com/tools/godep
 - https://github.com/kardianos/govendor
