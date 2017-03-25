@@ -147,7 +147,7 @@ The `go get` tool will only get you as far as getting a dependency latest master
 - https://github.com/Masterminds/glide
 - https://github.com/mattn/gom
 
-Go has acknowledged the need for a dependency management tool by starting its own project: [dep](https://github.com/golang/dep) . As of the time of writing, it is still in Alpha phase, and not part of official Go toolchain yet. Watch that project [roadmap](https://github.com/golang/dep/wiki/Roadmap) for status updates!
+Go has acknowledged the need for a dependency management tool by starting its own project: [dep](https://github.com/golang/dep). As of the time of writing, it is still in Alpha phase, and not part of official Go toolchain yet. Watch that project [roadmap](https://github.com/golang/dep/wiki/Roadmap) for status updates!
 
 # Patterns
 TBD
