@@ -135,6 +135,7 @@ A Javascript module can be any valid Javascript type. By exporting an object, it
 Another difference is the consumption of other internal components within your project. In Javascript, since each file is (usually) a module, then each of the files that were decoupled from the current file must be imported. On the other hand, in Go, all files within the same package can have access to each other since there is no file scope.
 
 ## Management
+
 For Javascript development, NPM is the de-facto package manager for NodeJS, and may also be used for client side projects. Bower is also a popular for client side projects.
 
 The `go get` tool will only get you as far as getting a dependency latest master code. This will not suffice if you need accurate dependency management with pinned versions. The Go community came up with several package managers, here's a partial list:
@@ -146,8 +147,7 @@ The `go get` tool will only get you as far as getting a dependency latest master
 - https://github.com/Masterminds/glide
 - https://github.com/mattn/gom
 
-Go has acknowledged the need for a dependency management tool by starting its own project: https://github.com/golang/dep .
-As of the time of writing, it is still in Alpha phase, and not part of official Go toolchain yet. Watch that project for status updates!
+Go has acknowledged the need for a dependency management tool by starting its own project: [dep](https://github.com/golang/dep). As of the time of writing, it is still in Alpha phase, and not part of official Go toolchain yet. Watch that project [roadmap](https://github.com/golang/dep/wiki/Roadmap) for status updates!
 
 # Patterns
 TBD
