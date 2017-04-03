@@ -20,7 +20,7 @@
   - [Spec & Practice](#spec--practice)
   - [Management](#management)
 - [Patterns](#patterns)
-- [Error Handling](#error-handling)
+- [Error Handling](#d-error-handling)
 - [Keywords & Syntax Comparison](#keywords--syntax-comparison)
   - [(D) `this` keyword](#d-this-keyword)
   - [(D) `new` keyword](#d-new-keyword)
@@ -152,8 +152,43 @@ Go has acknowledged the need for a dependency management tool by starting its ow
 # Patterns
 TBD
 
-# Error Handling
-TBD
+# (D) Error Handling
+**JS**
+
+Javascript has C++-style error handing, where functions may return a value in the normal case, or may throw
+an error in the case of a problem. Error handling is accomplished through a `try...catch` construct, with the
+possible error-producing functions wrapped in the try block, and the error handling logic in the catch
+block.
+
+```
+try {
+   throw "myException"; // generates an exception
+}
+catch (e) {
+   // statements to handle any exceptions
+   logMyErrors(e); // pass exception object to error handler
+}
+```
+
+**Go**
+
+Idiomatic Go leverages the language's ability of function to [return multiple values](#d-multiple-returns)
+to accomplish error handling. Functions will often return two values, the first being the result of a
+successful function invocation and the second a value of type `error` from an unsuccessful or special
+case of the function invocation (for instance, an EOF reached when reading a file). From there it's
+up to the programmer to check for the error and handle it appropriately.
+[Errors in Go are values](https://blog.golang.org/errors-are-values), and can be passed around between
+functions just like any other values.
+
+```
+i, err := strconv.Atoi("42")
+if err != nil {
+    fmt.Printf("Couldn't convert number: %v\n", err)
+    return
+}
+fmt.Println("Converted integer:", i)
+```
+
 
 # Keywords & Syntax Comparison
 
