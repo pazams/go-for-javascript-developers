@@ -179,7 +179,7 @@ For example, for a web-server application, if errors occur in a request handling
 On the other hand, if an error occurs during the application init, it can be argued that there’s no reason to continue, and therefore `panic` would make sense.
  
 ## (S) loss of stack trace
-While passing errors as values, one pitfull is the loss of stack trace. Both languages suffer from this. Some runtimes and libraries try to help. Some libraries:
+While passing errors as values, one drawback is the loss of stack trace. Both languages suffer from this. Some runtimes and libraries try to help. Some libraries:
 - JS: [longjohn](https://github.com/mattinsler/longjohn)
 - Go: [errgo](https://github.com/juju/errgo)
 
