@@ -64,7 +64,7 @@ You should always pick the right tool for the right job. Unfortunately, there wi
 
 ![science is more art than science](/images/science_art.png)
 
-Aside of technical considerations, other considerations, such as community adoption are also important. It was reported that Facebook moved away from the Erlang language because [it was hard to find qualified programmers](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html)
+Aside of technical considerations, other considerations, such as community adoption are also important. It was [reported](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html) that Facebook moved away from the Erlang language because it was hard to find qualified programmers.
 
 Having said that, it is worthy to note that Javascript excels in I/O intense applications, and less so in CPU intense applications.
 
@@ -180,7 +180,7 @@ It is more idiomatic to use short variables as receivers. In the example above `
 ## (D) `new` keyword
 **JS**
 
-`new Foo()` instantiates an object from `Foo`, a constructor function.
+`new Foo()` instantiates an object from `Foo`, a constructor function or a class.
 
 **Go**
 
@@ -235,7 +235,7 @@ go func() {
 ## (D) String literals
 **JS**
 
-Strings are initialized with single quotes (`'hello'`) or double quotes (`"hello"`). Most coding styles prefer the single quotes variation.
+Strings are initialized with single quotes (`'hello'`) or double quotes (`"hello"`), yet most coding styles prefer the single quotes variation. Raw string literals use backticks (``` `hello` ```).
 
 **Go**
 
@@ -332,7 +332,7 @@ for i < 10 {
 	i++
 }
 ```
-###Iterating over an Array/Slice
+### Iterating over an Array/Slice
 
 **JS**
 ```Javascript
