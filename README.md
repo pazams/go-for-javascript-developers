@@ -161,7 +161,7 @@ TBD
 Both languages pass errors as regular values. Also, both languages leverage flow control constructs: JS uses `throw` `catch` `finally` block, and Go uses [`panic` `recover` `defer` ](https://blog.golang.org/defer-panic-and-recover)
   
 ## (D) Usage
-Despite the similarity claimed above, the languages differ on how these mechanism are used:
+Despite the similarity claimed above, the languages differ on how and when errors are handled:
  
 ### JS
 In JS, the way to propegate an error is determined by the synchorinic nature of the function. 
