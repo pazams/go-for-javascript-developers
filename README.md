@@ -111,11 +111,11 @@ Go is compiled. Javascript is not, though some Javascript runtimes use JIT compi
 
 **JS**
 
-The best way to describe Parallelism in javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
+The best way to describe Parallelism in Javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
 >  Well, in node everything runs in parallel, except your code.
 
-So while your JS runtime may use multiple threads for IO, your own code is getting run just by one. That's just how the *evented* model works.
-Different JS runtimes offer some options for concurrency or parallelism: NodeJS offers [clustering](https://nodejs.org/docs/latest/api/cluster.html), and Browsers offer [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
+So while your Javascript runtime may use multiple threads for IO, your own code is getting run just by one. That's just how the *evented* model works.
+Different Javascript runtimes offer some options for concurrency or parallelism: NodeJS offers [clustering](https://nodejs.org/docs/latest/api/cluster.html), and Browsers offer [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
 
 **Go**
 
@@ -161,7 +161,7 @@ If the caller wants to be blocked, then he can just the function
 ```Go
             a := fetchA()
 ```
-If the caller doesn’t want to be blocked, then he could run the function inside a goroutine:
+If the caller does not want to be blocked, then he could run the function inside a goroutine:
 ```Go
 	aChan := make(chan fetchResult, 0)
 	go func(c chan fetchResult) {
@@ -173,7 +173,7 @@ If the caller doesn’t want to be blocked, then he could run the function insid
 
 **Go**
 
-Even without parallelism, we can structure JS code in both sequential and concurrent flows.
+Even without parallelism, we can structure Javascript code in both sequential and concurrent flows.
 For the following exmaples, let’s assume `fetchA()`, `fetchB()` and `fetchC()` are all async functions returning a promise.
 
 **Sequential**
@@ -287,7 +287,7 @@ TBD
 # Error Handling
 ## (B) Flow control and values
 
-Both languages pass errors as regular values. Also, both languages leverage flow control constructs: JS uses `throw` `catch` `finally` block, and Go uses [`panic` `recover` `defer` ](https://blog.golang.org/defer-panic-and-recover)
+Both languages pass errors as regular values. Also, both languages leverage flow control constructs: Javascript uses `throw` `catch` `finally` block, and Go uses [`panic` `recover` `defer` ](https://blog.golang.org/defer-panic-and-recover)
 
 ## (D) Usage
 Despite the similarity claimed above, the languages differ on how and when errors are handled:
