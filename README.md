@@ -15,7 +15,10 @@
   - [(S) Heap/Stack Memory Allocation](#s-heapstack-memory-allocation)
   - [(S) Garbage Collection](#s-garbage-collection)
   - [(D) Compilation](#d-compilation)
-- [Concurrency](#concurrency)
+- [Concurrency & Parallelism](#concurrency--parallelism)
+  - [Overview (D)](#overview-d)
+  - [Async vs Sync APIs (D)](#async-vs-sync-apis-d)
+  - [Sequential and Concurrent Patterns (D)](#sequential-and-concurrent-patterns-d)
 - [Modules / Packages](#modules--packages)
   - [Spec & Practice](#spec--practice)
   - [Management](#management)
@@ -40,6 +43,7 @@
   - [(B) Loops and iteration](#b-loops-and-iteration)
     - [For](#for)
     - [While](#while)
+    - [Iterating over an Array/Slice](#iterating-over-an-arrayslice)
   - [(B) If/Else](#b-ifelse)
   - [(D) Switch](#d-switch)
 - [Functions](#functions)
@@ -165,14 +169,15 @@ If the caller doesn’t want to be blocked, then he could run the function insid
 	}(aChan)
 ```
 
-Sequential vs Concurrent Patterns (D)
+## Sequential and Concurrent Patterns (D)
 
 **Go**
 
 Even without parallelism, we can structure JS code in both sequential and concurrent flows.
 For the following exmaples, let’s assume `fetchA()`, `fetchB()` and `fetchC()` are all async functions returning a promise.
 
-### Sequential
+**Sequential**
+
 ```Javascript
 function fetchSequential() {
     fetchA().then( (a) => {
@@ -187,7 +192,8 @@ function fetchSequential() {
 }
 ```
 
-### Concurrent
+**Concurrent**
+
 ```Javascript
 function fetchConcurrent() {
     Promise.all([fetchA(), fetchB(), fetchC()]).then(values => {
@@ -200,7 +206,8 @@ function fetchConcurrent() {
 
 For the following examples, assume `fetchB()` and `fetchC()` are defined as a sync function similarly to `fetchA` in the previous section (The full example is available here https://play.golang.org/p/2BVwtos4-j)
 
-### Sequential
+**Sequential**
+
 ```Go
 func fetchSequential() {
 	a := fetchA()
@@ -211,7 +218,8 @@ func fetchSequential() {
 	fmt.Println(c)
 }
 ```
-### Concurrent
+**Concurrent**
+
 ```Go
 func fetchConcurrent() {
 	aChan := make(chan fetchResult, 0)
@@ -284,7 +292,7 @@ Both languages pass errors as regular values. Also, both languages leverage flow
 ## (D) Usage
 Despite the similarity claimed above, the languages differ on how and when errors are handled:
 
-### JS
+**JS**
 In JS, the way to propegate an error is determined by the synchorinic nature of the function.
 If a function is synchronous, then it should use `throw` when an error occurs, and the caller should use `try/catch` blocks.
 
@@ -292,14 +300,14 @@ Otherwise, an asynchronous function should propagate the error by passing it as 
 
 Note the `async/await` mechanism, which is in draft, will consolidate both worlds by having asynchronous errors being handled inside `try/catch` blocks.
 
-### Go
+**Go**
 In Go on the other hand, the way to propagate an error is determined by the degree of severity with context of the whole application.
 
 For example, for a web-server application, if errors occur in a request handling code path, they should not crash the entire server.  Therefore, these errors should be returned as a last argument to the caller.
 
 On the other hand, if an error occurs during the application init, it can be argued that there’s no reason to continue, and therefore `panic` would make sense.
 
-## (S) loss of stack trace
+## (S) Loss of stack trace
 While passing errors as values, one drawback is the loss of stack trace. Both languages suffer from this. Some runtimes and libraries try to help. Some libraries:
 - JS: [longjohn](https://github.com/mattinsler/longjohn)
 - Go: [errgo](https://github.com/juju/errgo)
