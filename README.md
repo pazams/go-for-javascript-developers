@@ -16,9 +16,9 @@
   - [(S) Garbage Collection](#s-garbage-collection)
   - [(D) Compilation](#d-compilation)
 - [Concurrency & Parallelism](#concurrency--parallelism)
-  - [Overview (D)](#overview-d)
-  - [Async vs Sync APIs (D)](#async-vs-sync-apis-d)
-  - [Sequential and Concurrent Patterns (D)](#sequential-and-concurrent-patterns-d)
+  - [(D) Overview](#d-overview)
+  - [(D) Async vs Sync APIs](#d-async-vs-sync-apis)
+  - [(D) Sequential and Concurrent Patterns](#d-sequential-and-concurrent-patterns)
 - [Modules / Packages](#modules--packages)
   - [Spec & Practice](#spec--practice)
   - [Management](#management)
@@ -105,7 +105,7 @@ Go is compiled. Javascript is not, though some Javascript runtimes use JIT compi
 
 # Concurrency & Parallelism
 
-## Overview (D)
+## (D) Overview
 
 **JS**
 
@@ -126,7 +126,7 @@ More on this subject:
 - [Advanced Go Concurrency Patterns](https://talks.golang.org/2013/advconc.slide#1)
 
 
-## Async vs Sync APIs (D)
+## (D) Async vs Sync APIs
 **JS**
 
 JS promotes writing async APIs, since sync APIs always block the caller, e.g:
@@ -155,11 +155,11 @@ func fetchA() fetchResult {
 	return fetchResult{"A data", nil}
 }
 ```
-If the caller wants to be blocked, then he can just the function
+If the caller wants to be blocked, then he can just call the function
 ```Go
 	a := fetchA()
 ```
-If the caller does not want to be blocked, then he could run the function inside a goroutine:
+If the caller does not want to be blocked, then he could call the function inside a goroutine:
 ```Go
 	aChan := make(chan fetchResult, 0)
 	go func(c chan fetchResult) {
@@ -167,9 +167,9 @@ If the caller does not want to be blocked, then he could run the function inside
 	}(aChan)
 ```
 
-## Sequential and Concurrent Patterns (D)
+## (D) Sequential and Concurrent Patterns
 
-**Go**
+**JS**
 
 Even without parallelism, we can structure Javascript code in both sequential and concurrent flows.
 For the following exmaples, let’s assume `fetchA()`, `fetchB()` and `fetchC()` are all async functions returning a promise.
