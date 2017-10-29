@@ -22,7 +22,6 @@
 - [Modules / Packages](#modules--packages)
   - [Spec & Practice](#spec--practice)
   - [Management](#management)
-- [Patterns](#patterns)
 - [Error Handling](#error-handling)
   - [(B) Flow control and values](#b-flow-control-and-values)
   - [(D) Usage](#d-usage)
@@ -38,7 +37,6 @@
 - [Variables](#variables)
   - [(D) Values, Pointers, References](#d-values-pointers-references)
   - [Types](#types)
-    - [Dynamic VS Static](#dynamic-vs-static)
 - [Flow control statements](#flow-control-statements)
   - [(B) Loops and iteration](#b-loops-and-iteration)
     - [For](#for)
@@ -281,9 +279,6 @@ The `go get` tool will only get you as far as getting a dependency latest master
 
 Go has acknowledged the need for a dependency management tool by starting its own project: [dep](https://github.com/golang/dep). As of the time of writing, it is still in Alpha phase, and not part of official Go toolchain yet. Watch that project [roadmap](https://github.com/golang/dep/wiki/Roadmap) for status updates!
 
-# Patterns
-TBD
-
 # Error Handling
 ## (B) Flow control and values
 
@@ -449,7 +444,6 @@ fmt.Println(a.message == b.message) // prints "true"
 ```
 
 ## Types
-### Dynamic VS Static
 TBD
 
 # Flow control statements
