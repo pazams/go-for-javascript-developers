@@ -15,11 +15,13 @@
   - [(S) Heap/Stack Memory Allocation](#s-heapstack-memory-allocation)
   - [(S) Garbage Collection](#s-garbage-collection)
   - [(D) Compilation](#d-compilation)
-- [Concurrency](#concurrency)
+- [Concurrency & Parallelism](#concurrency--parallelism)
+  - [Overview (D)](#overview-d)
+  - [Async vs Sync APIs (D)](#async-vs-sync-apis-d)
+  - [Sequential and Concurrent Patterns (D)](#sequential-and-concurrent-patterns-d)
 - [Modules / Packages](#modules--packages)
   - [Spec & Practice](#spec--practice)
   - [Management](#management)
-- [Patterns](#patterns)
 - [Error Handling](#error-handling)
   - [(B) Flow control and values](#b-flow-control-and-values)
   - [(D) Usage](#d-usage)
@@ -35,11 +37,11 @@
 - [Variables](#variables)
   - [(D) Values, Pointers, References](#d-values-pointers-references)
   - [Types](#types)
-    - [Dynamic VS Static](#dynamic-vs-static)
 - [Flow control statements](#flow-control-statements)
   - [(B) Loops and iteration](#b-loops-and-iteration)
     - [For](#for)
     - [While](#while)
+    - [Iterating over an Array/Slice](#iterating-over-an-arrayslice)
   - [(B) If/Else](#b-ifelse)
   - [(D) Switch](#d-switch)
 - [Functions](#functions)
@@ -101,20 +103,145 @@ Garbage collection is implemented in both languages.
 ## (D) Compilation
 Go is compiled. Javascript is not, though some Javascript runtimes use JIT compilation. From the developer experience perspective, the biggest effect of compiled languages is compile-time safety. You get compile-time safety with Go, while in Javascript you can use external code linters to ease the missing of this feature.
 
-# Concurrency
-The best way to describe concurrency in javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
+# Concurrency & Parallelism
+
+## Overview (D)
+
+**JS**
+
+The best way to describe Parallelism in Javascript is with this [quote](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb) by Felix Geisendörfer:
 >  Well, in node everything runs in parallel, except your code.
 
-So while your JS runtime may use multiple threads for IO, your own code is getting run just by one. That's just how the *evented* model works.
-Different JS runtimes offer some options for concurrency or parallelism: NodeJS offers [clustering](https://nodejs.org/docs/latest/api/cluster.html), and Browsers offer [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
+So while your Javascript runtime may use multiple threads for IO, your own code is getting run just by one. That's just how the *evented* model works.
+Different Javascript runtimes offer some options for concurrency or parallelism: NodeJS offers [clustering](https://nodejs.org/docs/latest/api/cluster.html), and Browsers offer [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
 
-On the other hand, Go is all about concurrency. It offers Goroutines which enables functions to execute concurrently, and channels to communicate between them. While Go standard library has the "sync" package for synchronization primitives, it [encourages](https://blog.golang.org/share-memory-by-communicating) more the use of Goroutines and channels, summarized as:
+**Go**
+
+On the other hand, Go is all about a concurrency witch enables parallelism. It offers Goroutines which enables functions to run concurrently, and channels to communicate between them. While Go standard library has the "sync" package for synchronization primitives, it [encourages](https://blog.golang.org/share-memory-by-communicating) more the use of Goroutines and channels, summarized as:
 
 > Do not communicate by sharing memory; instead, share memory by communicating
 
 More on this subject:
 - [Go Concurrency Patterns](https://talks.golang.org/2012/concurrency.slide#1)
 - [Advanced Go Concurrency Patterns](https://talks.golang.org/2013/advconc.slide#1)
+
+
+## Async vs Sync APIs (D)
+**JS**
+
+JS promotes writing async APIs, since sync APIs always block the caller, e.g:
+```Javascript
+const fs = require('fs');
+
+// The caller to this function will be blocked while the file is being read.
+function fetchA() {
+   return fs.readFileSync('a.txt');
+}
+```
+In the example above, the async `fs.readFile()` would be a better choice in most scenarios, making `fetchA()` async and unblocking its caller.
+
+**Go**
+
+On the other hand, Go promotes the sync APIs (see “Avoid concurrency in your API” in https://talks.golang.org/2013/bestpractices.slide#26)
+The reasoning behind this is that it is completely up to the caller's choice to be blocked or not by a sync API. Consider the following type definition and sync `fetchA` function:
+```Go
+type fetchResult struct {
+	Message string
+	Error   error
+}
+
+func fetchA() fetchResult {
+	time.Sleep(time.Second * 4)
+	return fetchResult{"A data", nil}
+}
+```
+If the caller wants to be blocked, then he can just the function
+```Go
+	a := fetchA()
+```
+If the caller does not want to be blocked, then he could run the function inside a goroutine:
+```Go
+	aChan := make(chan fetchResult, 0)
+	go func(c chan fetchResult) {
+		c <- fetchA()
+	}(aChan)
+```
+
+## Sequential and Concurrent Patterns (D)
+
+**Go**
+
+Even without parallelism, we can structure Javascript code in both sequential and concurrent flows.
+For the following exmaples, let’s assume `fetchA()`, `fetchB()` and `fetchC()` are all async functions returning a promise.
+
+**Sequential**
+
+```Javascript
+function fetchSequential() {
+    fetchA().then( (a) => {
+        console.log(a);
+        return fetchB();
+    }.then( (b) => {
+        console.log(b);
+        return fetchC();
+    }.then( (c) => {
+        console.log(c);
+    }
+}
+```
+
+**Concurrent**
+
+```Javascript
+function fetchConcurrent() {
+    Promise.all([fetchA(), fetchB(), fetchC()]).then(values => {
+        console.log(values);
+    }
+}
+```
+
+**Go**
+
+For the following examples, assume `fetchB()` and `fetchC()` are defined as a sync function similarly to `fetchA` in the previous section (The full example is available here https://play.golang.org/p/2BVwtos4-j)
+
+**Sequential**
+
+```Go
+func fetchSequential() {
+	a := fetchA()
+	fmt.Println(a)
+	b := fetchB()
+	fmt.Println(b)
+	c := fetchC()
+	fmt.Println(c)
+}
+```
+**Concurrent**
+
+```Go
+func fetchConcurrent() {
+	aChan := make(chan fetchResult, 0)
+	go func(c chan fetchResult) {
+		c <- fetchA()
+	}(aChan)
+	bChan := make(chan fetchResult, 0)
+	go func(c chan fetchResult) {
+		c <- fetchB()
+	}(bChan)
+	cChan := make(chan fetchResult, 0)
+	go func(c chan fetchResult) {
+		c <- fetchC()
+	}(cChan)
+
+	// order doesn't really matter!
+	a := <-aChan
+	b := <-bChan
+	c := <-cChan
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(c)
+}
+```
 
 # Modules / Packages
 ## Spec & Practice
@@ -152,33 +279,30 @@ The `go get` tool will only get you as far as getting a dependency latest master
 
 Go has acknowledged the need for a dependency management tool by starting its own project: [dep](https://github.com/golang/dep). As of the time of writing, it is still in Alpha phase, and not part of official Go toolchain yet. Watch that project [roadmap](https://github.com/golang/dep/wiki/Roadmap) for status updates!
 
-# Patterns
-TBD
-
 # Error Handling
 ## (B) Flow control and values
- 
-Both languages pass errors as regular values. Also, both languages leverage flow control constructs: JS uses `throw` `catch` `finally` block, and Go uses [`panic` `recover` `defer` ](https://blog.golang.org/defer-panic-and-recover)
-  
+
+Both languages pass errors as regular values. Also, both languages leverage flow control constructs: Javascript uses `throw` `catch` `finally` block, and Go uses [`panic` `recover` `defer` ](https://blog.golang.org/defer-panic-and-recover)
+
 ## (D) Usage
 Despite the similarity claimed above, the languages differ on how and when errors are handled:
- 
-### JS
-In JS, the way to propegate an error is determined by the synchorinic nature of the function. 
+
+**JS**
+In JS, the way to propegate an error is determined by the synchorinic nature of the function.
 If a function is synchronous, then it should use `throw` when an error occurs, and the caller should use `try/catch` blocks.
- 
+
 Otherwise, an asynchronous function should propagate the error by passing it as a first value to a callback function, or it should return a rejected promise.
- 
+
 Note the `async/await` mechanism, which is in draft, will consolidate both worlds by having asynchronous errors being handled inside `try/catch` blocks.
- 
-### Go
-In Go on the other hand, the way to propagate an error is determined by the degree of severity with context of the whole application. 
- 
-For example, for a web-server application, if errors occur in a request handling code path, they should not crash the entire server.  Therefore, these errors should be returned as a last argument to the caller. 
- 
+
+**Go**
+In Go on the other hand, the way to propagate an error is determined by the degree of severity with context of the whole application.
+
+For example, for a web-server application, if errors occur in a request handling code path, they should not crash the entire server.  Therefore, these errors should be returned as a last argument to the caller.
+
 On the other hand, if an error occurs during the application init, it can be argued that there’s no reason to continue, and therefore `panic` would make sense.
- 
-## (S) loss of stack trace
+
+## (S) Loss of stack trace
 While passing errors as values, one drawback is the loss of stack trace. Both languages suffer from this. Some runtimes and libraries try to help. Some libraries:
 - JS: [longjohn](https://github.com/mattinsler/longjohn)
 - Go: [errgo](https://github.com/juju/errgo)
@@ -222,7 +346,7 @@ timer := time.NewTimer(d) // timer is a *time.Timer
 ## (D) bind / method values
 
 **JS**
-```JS
+```Javascript
 var f = boo.foo.bind(boo2); // when calling f(), "this" will refer to boo2
 ```
 
@@ -234,7 +358,7 @@ f := boo.foo // f(), is same as boo.foo()
 ## (S) setTimeout / timer
 
 **JS**
-```JS
+```Javascript
 setTimeout(somefunction, 3*1000)
 ```
 
@@ -246,7 +370,7 @@ time.AfterFunc(3*time.Second, somefunction)
 ## (D) setInterval / ticker
 
 **JS**
-```JS
+```Javascript
 setInterval(somefunction, 3*1000)
 ```
 
@@ -320,7 +444,6 @@ fmt.Println(a.message == b.message) // prints "true"
 ```
 
 ## Types
-### Dynamic VS Static
 TBD
 
 # Flow control statements
