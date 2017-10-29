@@ -159,7 +159,7 @@ func fetchA() fetchResult {
 ```
 If the caller wants to be blocked, then he can just the function
 ```Go
-            a := fetchA()
+	a := fetchA()
 ```
 If the caller does not want to be blocked, then he could run the function inside a goroutine:
 ```Go
