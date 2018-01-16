@@ -165,6 +165,7 @@ If the caller does not want to be blocked, then he could call the function insid
 	go func(c chan fetchResult) {
 		c <- fetchA()
 	}(aChan)
+	a := <-aChan
 ```
 
 ## (D) Sequential and Concurrent Patterns
