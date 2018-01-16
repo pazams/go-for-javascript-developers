@@ -190,6 +190,19 @@ function fetchSequential() {
 }
 ```
 
+or 
+
+```Javascript
+async function fetchSequential() {
+    const a = await fetchA();
+    console.log(a);
+    const b = await fetchB();
+    console.log(b);
+    const c = await fetchC();
+    console.log(c);
+}
+```
+
 **Concurrent**
 
 ```Javascript
@@ -197,6 +210,15 @@ function fetchConcurrent() {
     Promise.all([fetchA(), fetchB(), fetchC()]).then(values => {
         console.log(values);
     }
+}
+```
+
+or
+
+```Javascript
+async function fetchConcurrent() {
+    const values = await Promise.all([fetchA(), fetchB(), fetchC()])
+    console.log(values);
 }
 ```
 
@@ -292,8 +314,6 @@ In JS, the way to propegate an error is determined by the synchorinic nature of 
 If a function is synchronous, then it should use `throw` when an error occurs, and the caller should use `try/catch` blocks.
 
 Otherwise, an asynchronous function should propagate the error by passing it as a first value to a callback function, or it should return a rejected promise.
-
-Note the `async/await` mechanism, which is in draft, will consolidate both worlds by having asynchronous errors being handled inside `try/catch` blocks.
 
 **Go**
 In Go on the other hand, the way to propagate an error is determined by the degree of severity with context of the whole application.
