@@ -315,6 +315,8 @@ If a function is synchronous, then it should use `throw` when an error occurs, a
 
 Otherwise, an asynchronous function should propagate the error by passing it as a first value to a callback function, or it should return a rejected promise.
 
+Note the `async/await` mechanism, which is in draft, will consolidate both worlds by having asynchronous errors being handled inside `try/catch` blocks.
+
 **Go**
 In Go on the other hand, the way to propagate an error is determined by the degree of severity with context of the whole application.
 
