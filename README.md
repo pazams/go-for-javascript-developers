@@ -190,6 +190,19 @@ function fetchSequential() {
 }
 ```
 
+or 
+
+```Javascript
+async function fetchSequential() {
+    const a = await fetchA();
+    console.log(a);
+    const b = await fetchB();
+    console.log(b);
+    const c = await fetchC();
+    console.log(c);
+}
+```
+
 **Concurrent**
 
 ```Javascript
@@ -197,6 +210,15 @@ function fetchConcurrent() {
     Promise.all([fetchA(), fetchB(), fetchC()]).then(values => {
         console.log(values);
     }
+}
+```
+
+or
+
+```Javascript
+async function fetchConcurrent() {
+    const values = await Promise.all([fetchA(), fetchB(), fetchC()])
+    console.log(values);
 }
 ```
 
