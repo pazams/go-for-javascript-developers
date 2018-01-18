@@ -243,6 +243,40 @@ func fetchConcurrent() {
 }
 ```
 
+or 
+
+```Go
+
+func fetchConcurrent() {
+	aChan := make(chan fetchResult, 0)
+	bChan := make(chan fetchResult, 0)
+	cChan := make(chan fetchResult, 0)
+	
+	go func(c chan fetchResult) {
+		c <- fetchA()
+	}(aChan)
+	go func(c chan fetchResult) {
+		c <- fetchB()
+	}(bChan)
+	go func(c chan fetchResult) {
+		c <- fetchC()
+	}(cChan)
+	
+	for i := 0; i < 2; i++ {
+        select {
+			case a := <-aChan:
+				fmt.Println(a)
+			case b := <-bChan:
+				fmt.Println(b)
+			case c := <-cChan:
+				fmt.Println(c)
+			
+        }
+	}
+}
+
+```
+
 # Modules / Packages
 ## Spec & Practice
 **JS**
