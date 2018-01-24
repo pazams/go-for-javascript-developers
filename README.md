@@ -178,15 +178,15 @@ For the following exmaples, let’s assume `fetchA()`, `fetchB()` and `fetchC()`
 
 ```Javascript
 function fetchSequential() {
-    fetchA().then( (a) => {
+    fetchA().then(a => {
         console.log(a);
         return fetchB();
-    }.then( (b) => {
+    }).then(b => {
         console.log(b);
         return fetchC();
-    }.then( (c) => {
+    }).then(c => {
         console.log(c);
-    }
+    })
 }
 ```
 
