@@ -117,7 +117,7 @@ Different Javascript runtimes offer some options for concurrency or parallelism:
 
 **Go**
 
-On the other hand, Go is all about a concurrency whitch enables parallelism. It offers Goroutines which enables functions to run concurrently, and channels to communicate between them. While Go standard library has the "sync" package for synchronization primitives, it [encourages](https://blog.golang.org/share-memory-by-communicating) more the use of Goroutines and channels, summarized as:
+On the other hand, Go is all about a concurrency which enables parallelism. It offers Goroutines which enables functions to run concurrently, and channels to communicate between them. While Go standard library has the "sync" package for synchronization primitives, it [encourages](https://blog.golang.org/share-memory-by-communicating) more the use of Goroutines and channels, summarized as:
 
 > Do not communicate by sharing memory; instead, share memory by communicating
 
