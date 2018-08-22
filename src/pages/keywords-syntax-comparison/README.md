@@ -10,11 +10,11 @@ Inside an object method, `this` refers to the object (with some exceptions).
 In Go, the closest analogy would be receivers inside method functions.
 You *may* use `this` as a receiver:
 ```Go
-type Boo struct {
+type Bar struct {
 	foo string
 }
 
-func (this *Boo) Foo() string {
+func (this *Bar) Foo() string {
 	return this.foo
 }
 ```
@@ -38,12 +38,12 @@ timer := time.NewTimer(d) // timer is a *time.Timer
 
 **JS**
 ```Javascript
-var f = boo.foo.bind(boo2); // when calling f(), "this" will refer to boo2
+var f = bar.foo.bind(bar2); // when calling f(), "this" will refer to bar2
 ```
 
 **Go**
 ```Go
-f := boo.foo // f(), is same as boo.foo()
+f := bar.foo // f(), is same as bar.foo()
 ```
 
 ## (S) setTimeout / timer

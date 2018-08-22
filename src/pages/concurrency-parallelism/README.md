@@ -119,7 +119,7 @@ async function fetchConcurrent() {
 
 **Go**
 
-For the following examples, assume `fetchB()` and `fetchC()` are defined as a sync function similarly to `fetchA` in the previous section (The full example is available here https://play.golang.org/p/2BVwtos4-j)
+For the following examples, assume `fetchB()` and `fetchC()` are defined as a sync function similarly to `fetchA` in the previous section (The full example is available at https://play.golang.org/p/2BVwtos4-j)
 
 **Sequential**
 

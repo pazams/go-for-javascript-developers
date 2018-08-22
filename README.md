@@ -6,7 +6,7 @@
 
 This is the source code for "Go for Javascript Developers".
 
-The book can be found at [http://www.pazams.com/go-for-javascript-developers/](http://www.pazams.com/go-for-javascript-developers/)
+The book can be found at [http://www.pazams.com/Go-for-Javascript-Developers/](http://www.pazams.com/Go-for-Javascript-Developers/)
 
 
 ## License
