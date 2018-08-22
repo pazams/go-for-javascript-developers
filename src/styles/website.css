@@ -1,0 +1,14 @@
+.logo-pazams {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: url(/images/logo-pazams.png) center;
+    margin: 7px auto 0;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+}
+
+a:hover .logo-pazams {
+    opacity: 1;
+}

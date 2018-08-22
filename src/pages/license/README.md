@@ -1,15 +1,4 @@
-# Go for Javascript Developers
-
-![book cover](/src/images/cover.png)
-
-## Read online
-
-This is the source code for "Go for Javascript Developers".
-
-The book can be found at [http://www.pazams.com/go-for-javascript-developers/](http://www.pazams.com/go-for-javascript-developers/)
-
-
-## License
+# License
 
 Copyright Maor Zamski & Daniel Singer
 

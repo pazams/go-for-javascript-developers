@@ -1,0 +1,21 @@
+{% block book_header %}
+<div class="book-header" role="navigation">
+    {% if glossary.path %}
+    <a href="{{ ('/' + glossary.path)|resolveFile }}" class="btn pull-left" aria-label="{{ "GLOSSARY_OPEN"|t }}"><i class="fa fa-sort-alpha-asc"></i></a>
+    {% endif %}
+
+    <a class="btn pull-right" aria-label="" href="http://www.pazams.com/">
+	    <span class="logo-pazams">
+	    </span>
+	    <span class="pull-right">
+	       Blog
+	    </span>
+    </a>
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="{{ "/"|resolveFile }}" >{{ page.title }}</a>
+    </h1>
+</div>
+{% endblock %}
