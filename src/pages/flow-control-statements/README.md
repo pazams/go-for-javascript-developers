@@ -79,7 +79,7 @@ switch (favorite) {
         break;
     case "red":
         console.log("red");
-    case "pruple":
+    case "purple":
         console.log("(and) purple");
     default:
         console.log("white");
@@ -95,7 +95,7 @@ case "yellow":
 case "red":
 	fmt.Println("red")
 	fallthrough
-case "pruple":
+case "purple":
 	fmt.Println("(and) purple")
 default:
 	fmt.Println("white")
