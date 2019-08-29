@@ -161,7 +161,7 @@ for key, value := range m {
 
 ### Sets
 **JS**
-Javascript has 3 types that are used for sets: `Object`, `Set`, `WeakSet`. Similarly to dictionaries case, `Object` is still often chosen for historical reasons. `Object` keys are limited to just String or Symbol types while `Set` and `WeakSet` support any type for keys. In the case of `Object`, the values in the key-value pairs are redundant.
+Javascript has 3 types that are used for sets: `Object`, `Set`, `WeakSet`. Similarly to the dictionaries case, `Object` is still often chosen for "set" functionality for historical reasons. `Object` keys are limited to just String or Symbol types while `Set` and `WeakSet` support any type for keys. When using `Object`, the values in the key-value pairs are redundant.
 
 **Go**
-Go does not have a type for set. It can though be accomplished easily with a `Map`. [Golang's blog](https://blog.golang.org/go-maps-in-action) suggests the convenient use of `bool` as a value type, i.e. `map[T]bool`. However, if memory usage of the values is a concern, then `map[T]struct{}` is a good alternative, as an empty struct allocates 0 memory (note `interface{}` does allocate memory; see this StackOverflow [answer](https://stackoverflow.com/a/22770744) for more details).
+Go does not have a type for set. It can be though easily accomplished with a `Map`. [Golang's blog](https://blog.golang.org/go-maps-in-action) suggests the convenient use of `bool` as a value type, i.e. `map[T]bool`. However, if memory usage of the redundant values is of concern, then `map[T]struct{}` is a good alternative, as an empty struct allocates 0 memory (note `interface{}` does allocate memory; see this StackOverflow [answer](https://stackoverflow.com/a/22770744) for more details).
