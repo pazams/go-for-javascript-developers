@@ -52,14 +52,17 @@ func fetchA() fetchResult {
 ```
 If the caller wants to be blocked, then he can just call the function
 ```Go
-	a := fetchA()
+a := fetchA()
 ```
 If the caller does not want to be blocked, then he could call the function inside a goroutine:
 ```Go
-	aChan := make(chan fetchResult, 0)
-	go func(c chan fetchResult) {
-		c <- fetchA()
-	}(aChan)
+aChan := make(chan fetchResult, 0)
+go func(c chan fetchResult) {
+	c <- fetchA()
+}(aChan)
+
+// Do other things, and then read from channel
+a := <-aChan	
 ```
 
 ## (D) Sequential and Concurrent Patterns
