@@ -1,0 +1,14 @@
+{
+  "name": "internal",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-scripts": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "gitbook build",
+    "serve": "gitbook serve"
+  }
+}
