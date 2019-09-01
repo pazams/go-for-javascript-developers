@@ -1,4 +1,4 @@
-# Variables
+# Types
 ## (D) Values, Pointers, References
 
 In Javascript there are value types and reference types. Primitives such as `string` and `number` are value types. Objects, including arrays and functions, are reference types.
@@ -45,9 +45,7 @@ fmt.Println(a.message == b.message) // prints "true"
 fmt.Println(a.message == b.message) // prints "true"
 ```
 
-## (D) Types
-
-### Arrays/Slices
+## (D) Arrays/Slices
 **JS**
 
 A Javascript `Array` is a dynamically sized list that may contain multiple types of elements.
@@ -126,7 +124,7 @@ bar[0] = "changed again"
 fmt.Println(foo, bar) // A change in bar is no longer reflected in foo because the `append` caused bar to backed by a different array
 ```
 
-### Dictionaries
+## (D) Dictionaries
 **JS**
 
 Javascript has 3 types that are used for dictionaries: `Object`, `Map`, `WeakMap`. Even though `Map` and `WeakMap` are dedicated types for dictionaries, `Object` is still often chosen for dictionaries because historically `Object` was the only option before `Map` and `WeakMap` were added to the language. `Object` keys are limited to just String or Symbol types while `Map` and `WeakMap` support any type for keys. 
@@ -162,7 +160,7 @@ for key, value := range m {
 }
 ```
 
-### Sets
+## (D) Sets
 **JS**
 
 Javascript has 3 types that are used for sets: `Object`, `Set`, `WeakSet`. Similarly to the dictionaries case, `Object` is still often chosen for "set" functionality for historical reasons. `Object` keys are limited to just String or Symbol types while `Set` and `WeakSet` support any type for keys. When using `Object`, the values in the key-value pairs are redundant.
