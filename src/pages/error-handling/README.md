@@ -28,7 +28,7 @@ While passing errors as values, one drawback is the loss of stack trace. Both la
 - JS: [longjohn](https://github.com/mattinsler/longjohn)
 - Go: [errgo](https://github.com/juju/errgo)
 
-## (D) Future of error handling
+## (D) The future
 
 Go error handling is the topic of a heated debate. Criticisers of the Go language point to the frequent error "nil handling" code. It is common to see this kind of code block throughout Go code:
 ```Go

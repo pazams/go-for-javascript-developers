@@ -45,7 +45,7 @@ fmt.Println(a.message == b.message) // prints "true"
 fmt.Println(a.message == b.message) // prints "true"
 ```
 
-## (D) Arrays/Slices
+## (D) Arrays / Slices
 **JS**
 
 A Javascript `Array` is a dynamically sized list that may contain multiple types of elements.
